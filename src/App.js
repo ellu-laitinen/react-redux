@@ -7,10 +7,9 @@ import Counter from './Components/counter'
 class App extends Component {
   state = {
     counter: 0
-
   }
 
-  addHandler = () => {
+  /* addHandler = () => {
     this.setState({
       counter: this.state.counter + 1
 
@@ -35,7 +34,7 @@ class App extends Component {
 
     console.log(this.state.counter)
   }
-
+ */
 
 
   render() {

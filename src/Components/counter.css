@@ -1,0 +1,21 @@
+button {
+    margin: 2px;
+    border-radius: 3px;
+    border: 1px solid black;
+    padding: 6px;
+    color: purple;
+
+}
+
+body {
+    background: rgb(235, 193, 235);
+}
+
+.container {
+    background: rgba(236, 142, 236, 0.644);
+    padding: 10px;
+    border: 1px dotted grey;
+    margin: 8px;
+    width: 80%;
+
+}

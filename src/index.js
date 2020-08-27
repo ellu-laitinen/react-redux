@@ -1,13 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import { createStore } from 'redux';
-import reducer from './store/reducer'
+import { createStore, combineReducers } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension'
 import { Provider } from 'react-redux'
 
-const store = createStore(reducer);
+import './index.css';
+import App from './App';
+import counterReducer from './store/reducers/counter'
+import resultsReducer from './store/reducers/results'
 
+const rootReducer = combineReducers({
+    ctr: counterReducer,
+    res: resultsReducer
+});
+
+const composeEnhancers = composeWithDevTools({
+    trace: true,
+    traceLimit: 25
+})
+
+const store = createStore(rootReducer, composeEnhancers());
 
 ReactDOM.render(<Provider store={store}>
     <App />

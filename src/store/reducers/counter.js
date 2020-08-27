@@ -1,41 +1,24 @@
-const deleteResult = (state, action) => {
-    const updatedResults = state.result.filter(result => result.id !== action.id)
-    return { ...state, result: updatedResults }
-}
+import * as actionTypes from '../actions'
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'INCREMENT': return {
+        case actionTypes.INCREMENT: return {
             ...state,
             counter: state.counter + 1
         }
-        case 'DECREMENT': return {
+        case actionTypes.DECREMENT: return {
             ...state,
             counter: state.counter - 1
         }
-        case 'ADD': return {
+        case actionTypes.ADD: return {
             ...state,
             counter: state.counter + action.value
         }
-        case 'REDUCE': return {
+        case actionTypes.REDUCE: return {
             ...state,
             counter: state.counter - action.value
         }
-        case 'RESET': return initialState;
-
-        case 'STORE_RESULT': return {
-            ...state,
-            result: state.result.concat({
-                id: new Date(),
-                value: state.counter
-            })
-        }
-
-
-        case 'DELETE_RESULT': return deleteResult(state, action)
-
-
-
+        case actionTypes.RESET: return initialState;
 
         default: return state;
     }
@@ -70,8 +53,8 @@ const reducer = (state = initialState, action) => {
 };
 
 const initialState = {
-    counter: 0,
-    result: []
+    counter: 0
+
 }
 
 export default reducer;

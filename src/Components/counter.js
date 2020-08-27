@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import * as actionTypes from '../store/actions'
+
+import './counter.css'
 
 class Counter extends Component {
     render() {
         return (
-            <div>
+            <div className="container">
                 <h1>Your score is: {this.props.ctr} </h1>
                 <button onClick={this.props.onIncCounter} >Add</button>
                 <button onClick={this.props.onReduceCounter}>Reduce</button>
@@ -12,7 +15,7 @@ class Counter extends Component {
                 <button onClick={this.props.onReduceFive}>Remove 5</button>
                 <button onClick={this.props.onReset}>Reset</button>
                 <div>
-                    <button onClick={this.props.onStoreResult}>Store result</button>
+                    <button onClick={() => this.props.onStoreResult(this.props.ctr)}>Store result</button>
                 </div>
                 <ul>
                     {this.props.storedResult.map((item) => (
@@ -26,20 +29,20 @@ class Counter extends Component {
 
 const mapStateToProps = state => {
     return {
-        ctr: state.counter,
-        storedResult: state.result
+        ctr: state.ctr.counter,
+        storedResult: state.res.results
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onIncCounter: () => dispatch({ type: 'INCREMENT' }),
-        onReduceCounter: () => dispatch({ type: 'DECREMENT' }),
-        onAddFive: () => dispatch({ type: 'ADD', value: 5 }),
-        onReduceFive: () => dispatch({ type: 'REDUCE', value: 5 }),
-        onReset: () => dispatch({ type: 'RESET' }),
-        onStoreResult: (result) => dispatch({ type: 'STORE_RESULT', result: result }),
-        onDeleteResult: (id) => dispatch({ type: 'DELETE_RESULT', id: id })
+        onIncCounter: () => dispatch({ type: actionTypes.INCREMENT }),
+        onReduceCounter: () => dispatch({ type: actionTypes.DECREMENT }),
+        onAddFive: () => dispatch({ type: actionTypes.ADD, value: 5 }),
+        onReduceFive: () => dispatch({ type: actionTypes.REDUCE, value: 5 }),
+        onReset: () => dispatch({ type: actionTypes.RESET }),
+        onStoreResult: (result) => dispatch({ type: actionTypes.STORE_RESULT, result: result }),
+        onDeleteResult: (id) => dispatch({ type: actionTypes.DELETE_RESULT, resultItem: id })
     }
 }
 
